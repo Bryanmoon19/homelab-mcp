@@ -32,7 +32,7 @@
     {
       "name": "lidarr",
       "url": "http://192.168.7.219:8686",
-      "healthUrl": "http://192.168.7.219:8686/health",
+      "healthUrl": "http://192.168.7.219:8686/ping",
       "description": "Lidarr — music library manager (*arr stack)",
       "kind": "http"
     }
