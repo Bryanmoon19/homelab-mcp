@@ -1,0 +1,40 @@
+{
+  "$comment": "homelab-mcp service registry. All entries are read-only HTTP GET probes. Base URLs use LAN addresses on the trusted network. healthUrl overrides the probed path when a service exposes a cheap health/status endpoint.",
+  "services": [
+    {
+      "name": "autobrr",
+      "url": "http://192.168.7.202:7474",
+      "healthUrl": "http://192.168.7.202:7474/api/healthz/liveness",
+      "description": "autobrr — torrent/Usenet automation (IRC announce + RSS -> Sonarr/Radarr push)",
+      "kind": "http"
+    },
+    {
+      "name": "slskd",
+      "url": "http://192.168.7.202:5030",
+      "healthUrl": "http://192.168.7.202:5030/health",
+      "description": "slskd — self-hosted Soulseek client",
+      "kind": "http"
+    },
+    {
+      "name": "vidbee",
+      "url": "http://192.168.7.202:3001",
+      "healthUrl": "http://192.168.7.202:3001",
+      "description": "VidBee — media/video management web UI (web on 3001, api on 3100)",
+      "kind": "http"
+    },
+    {
+      "name": "rackpeek",
+      "url": "http://192.168.7.202:8080",
+      "healthUrl": "http://192.168.7.202:8080",
+      "description": "rackpeek — rack/hardware monitoring",
+      "kind": "http"
+    },
+    {
+      "name": "lidarr",
+      "url": "http://192.168.7.219:8686",
+      "healthUrl": "http://192.168.7.219:8686/health",
+      "description": "Lidarr — music library manager (*arr stack)",
+      "kind": "http"
+    }
+  ]
+}
