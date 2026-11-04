@@ -14,15 +14,26 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const CONFIG_PATH = join(__dirname, "services.json");
+// Config path: default to the committed example (services.json). Set
+// HOMELAB_MCP_CONFIG to point at an untracked local file (e.g.
+// services.local.json) holding your real LAN addresses, so they never enter git.
+const CONFIG_PATH = process.env.HOMELAB_MCP_CONFIG
+  ? resolve(process.env.HOMELAB_MCP_CONFIG)
+  : join(__dirname, "services.json");
 
 // --- load services ---------------------------------------------------------
 function loadServices() {
+  if (!existsSync(CONFIG_PATH)) {
+    throw new Error(
+      `Config not found at ${CONFIG_PATH}. Copy services.json to services.local.json ` +
+        `and set HOMELAB_MCP_CONFIG=/path/to/services.local.json, or run against the bundled example.`
+    );
+  }
   const raw = readFileSync(CONFIG_PATH, "utf8");
   const parsed = JSON.parse(raw);
   const list = Array.isArray(parsed) ? parsed : parsed.services;

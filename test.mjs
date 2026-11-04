@@ -5,10 +5,13 @@
  */
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const parsed = JSON.parse(readFileSync(join(__dirname, "services.json"), "utf8"));
+const configPath = process.env.HOMELAB_MCP_CONFIG
+  ? resolve(process.env.HOMELAB_MCP_CONFIG)
+  : join(__dirname, "services.json");
+const parsed = JSON.parse(readFileSync(configPath, "utf8"));
 const services = Array.isArray(parsed) ? parsed : parsed.services;
 
 async function probe(url, timeoutMs = 4000) {
