@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * homelab-mcp — a read-only MCP server that exposes Bryan's self-hosted
+ * homelab-mcp — a read-only MCP server that exposes your self-hosted
  * services as queryable tools/resources for any MCP-capable client
  * (Claude Desktop, Claude Code, OpenClaw, Cursor, etc.).
  *
@@ -45,7 +45,7 @@ const services = loadServices();
 
 const server = new McpServer(
   { name: "homelab-mcp", version: "1.0.0" },
-  { instructions: "Read-only access to Bryan's self-hosted homelab services. Query status, health, and metadata. No mutations." }
+  { instructions: "Read-only access to your self-hosted homelab services. Query status, health, and metadata. No mutations." }
 );
 
 // --- helpers ---------------------------------------------------------------

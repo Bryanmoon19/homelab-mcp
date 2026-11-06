@@ -1,16 +1,27 @@
 {
   "name": "homelab-mcp",
   "version": "1.0.0",
-  "description": "",
+  "description": "Read-only MCP server that exposes your self-hosted homelab services (autobrr, slskd, Lidarr, Plex, NAS…) to any MCP client as queryable health/status tools. Config-driven, zero write access, no secrets in the repo.",
   "main": "index.js",
   "type": "module",
-  "bin": { "homelab-mcp": "index.js" },
+  "bin": {
+    "homelab-mcp": "index.js"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "node test.mjs"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "homelab",
+    "self-hosted",
+    "proxmox",
+    "plex",
+    "monitoring",
+    "health-check"
+  ],
+  "author": "Bryan Moon",
   "license": "ISC",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2"
